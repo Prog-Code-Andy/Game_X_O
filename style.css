@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.field{
+    display: none;
+}
+.field .game{
+    max-width: 60%;
+    height: 97%;
+    margin: 0 auto;
+}
+.field .field_rezult{
+    background-color: blanchedalmond;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.field_rezult .numb_rez{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 5%;
+}
+.numb_rez .block_element{
+    background: #fff;
+    width: 13%;
+    border-radius: 50%;
+}
+.win_one, .win_two{
+    font-size: 80px;
+    text-align: center;
+}
+.numX{
+    background: url(img/x-ome.svg) no-repeat center;
+    background-size: 50%;
+}
+
+.numO{
+    background: url(img/circle.svg) no-repeat center;
+    background-size: 50%;
+}
+.line{
+    display: block;
+}
+.line hr{
+    position: absolute;
+    background-color: red;
+    width: 489px;
+    height: 3px;
+    margin-top: 78px;
+    margin-left: 3px;
+    z-index: 1000;
+}
+.restart{
+    font-size: 40px;
+    text-align: center;    
+}
+.restart span{
+    display: block;
+    background: yellow;
+    border-radius: 50%;
+    border: solid black 1px;
+    padding: 25px;
+}
+.game_field span{
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.name_plaeyer{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 7%;
+}
+.block_pl{
+    flex-basis: 88px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.field .game_field{
+    position: absolute;
+    width: 50%;
+    height: 70%;
+    margin: 4% 5%;
+}
+
+.game_field .gorizont_one, .gorizont_two, .gorizont_three{
+    height: 33%;
+    display: flex;
+    background-color: black;
+}
+.game_field .one, .two, .three{
+    width: 33%;
+    height: 99%;
+    margin: 1px 1px 1px 1px;
+    background-color: blanchedalmond;
+}
+
+
+
+/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {} */
+/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {} */
+/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {} */
+/* @media only screen and (max-width : 320px) {} */
+/* @media only screen and (min-width : 321px) {} */
+/* @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {} */
