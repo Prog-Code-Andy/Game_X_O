@@ -30,11 +30,11 @@ function View(controller) {
         var playFeild = document.querySelector('.game_field').getElementsByTagName('span');
         if (countTemp > 9) return false;
         if (move === "x") {
-            playFeild[cell].className = "numX";
+                playFeild[cell].className = "numX";
         }
         if (countTemp >= 9) return false;
         if (move !== "x") {
-            playFeild[cell].className = "numO";
+                playFeild[cell].className = "numO";
         }
     };
 
@@ -44,8 +44,8 @@ function View(controller) {
 
     this.setScore = function (comp, player) {
         var textResult = document.querySelector('.numb_rez').getElementsByTagName('span');
-        textResult[0].innerHTML = comp;
-        textResult[1].innerHTML = player;
+        textResult[0].innerHTML = player;
+        textResult[1].innerHTML = comp;
     };
 
     this.lineWin = function () {

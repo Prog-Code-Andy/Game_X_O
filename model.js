@@ -4,6 +4,8 @@ function Model(char = "x") {
     this.comp = char = "x" ? "o" : "x";
     this.pwin = 0;
     this.cwin = 0;
+    this.getTempMachRes = true;
+
 
     var getClearField = function () {
         return [
@@ -16,7 +18,7 @@ function Model(char = "x") {
     this.field = getClearField();
     var count = 0;
 
-    this.countTemp = function (){
+    this.countLengGame = function (){
         return count;
     };
 
@@ -38,7 +40,7 @@ function Model(char = "x") {
         }
         this.field[y][x] = this.player;
         count++;
-        this.countTemp();
+        this.countLengGame();
         return true;
     };
 
@@ -50,7 +52,7 @@ function Model(char = "x") {
             } while (this.field[y][x] !== empty);
             this.field[y][x] = this.comp;
             count++;
-            this.countTemp();
+            this.countLengGame();
             return y * 3 + x
         }
     };
@@ -75,12 +77,17 @@ function Model(char = "x") {
     this.getMatchResult = function () {
         var res = checkRezult(this.field);
         if (res) {
-            console.log("0");
             if (res === this.player) {
-                ++this.pwin;
+                if(this.getTempMachRes){
+                    this.getTempMachRes = false;
+                    ++this.pwin;
+                }
                 return "p";
-            } else {
-                ++this.cwin;
+            } else{
+                if(this.getTempMachRes){
+                    this.getTempMachRes = false;
+                    ++this.cwin;
+                }
                 return "c";
             }
         }
@@ -88,7 +95,6 @@ function Model(char = "x") {
                 return "d";
             }
             return false;
-            
     };
 
     this.newGame = function () {
