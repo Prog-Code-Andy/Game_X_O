@@ -32,6 +32,17 @@ function Model(char = "x") {
   };
 
   this.playersTurn = function (cellNumber) {
+      var arr = this.field;
+      var sx = 0;
+      var sp = -1;
+      for (let i = 0; i < arr.length; i++) {
+          if(aa[i] == 'x') xs++;
+          else if(a[i] === ' ') sp = i;
+      }
+      if(xs === 3 && sp !== -1){
+          
+      }
+      console.log(arr);
     var x = cellNumber % 3;
     var y = ~~Math.floor(cellNumber / 3);
     if (this.field[y][x] !== empty) {
