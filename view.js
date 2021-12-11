@@ -26,26 +26,20 @@ function View(controller) {
         }
     };
 
-    this.drawToken = function (move, cell, countTemp) {
+    this.drawToken = function (move, cell) {
         var playFeild = document.querySelector('.game_field').getElementsByTagName('span');
-        if (countTemp > 9) return false;
         if (move === "x") {
                 playFeild[cell].className = "numX";
         }
-        if (countTemp >= 9) return false;
         if (move !== "x") {
                 playFeild[cell].className = "numO";
         }
     };
 
-    this.writeResultText = function (text) {
-        var textResult = document.querySelector('.block_element').getElementsByTagName('span');
-    };
-
     this.setScore = function (comp, player) {
-        var textResult = document.querySelector('.numb_rez').getElementsByTagName('span');
-        textResult[0].innerHTML = player;
-        textResult[1].innerHTML = comp;
+        var textResult = document.querySelector('.numb_rez').getElementsByClassName('rez');
+        textResult[0].innerHTML = String(player);
+        textResult[1].innerHTML = String(comp);
     };
 
     this.lineWin = function () {
@@ -62,6 +56,38 @@ function View(controller) {
         console.log(obj.target.id);
     };
 
+    this.printAva = function (res) {
+        var avatOne = document.querySelector('.avatar-one'),
+            avatTwo = document.querySelector('.avatar-two');
+        if(!res){
+        var pictOne = document.createElement("IMG"),
+            pictTwo = document.createElement("IMG");
+            pictOne.src = "img/grimace-solid.svg";
+            pictTwo.src = "img/plyer-start.svg";
+            avatOne.appendChild(pictOne);
+            avatTwo.appendChild(pictTwo);
+        }
+        
+            var bot = res;
+            var player = res;
+            var avatDirBot = avatOne.getElementsByTagName("img");
+            var avatDirPl = avatTwo.getElementsByTagName("img");
+            avatDirBot[0].outerHTML = '<img src="img/grimace-solid.svg">';
+            avatDirPl[0].outerHTML = '<img src="img/plyer-start.svg">';
+            if(bot === "c" || player === "p"){
+                if(bot === "c"){
+                    avatDirBot[0].outerHTML = '<img src="img/win.svg">'
+                }else{
+                    avatDirBot[0].outerHTML = '<img src="img/lose.svg">'
+                }
+                if(player === "p"){
+                    avatDirPl[0].outerHTML = '<img src="img/win.svg">'
+                }else{
+                    avatDirPl[0].outerHTML = '<img src="img/lose.svg">'
+                }
+            }
+    };
+
     this.getCoords = function(cell) {
         /* https://learn.javascript.ru/coordinates-document */
         let box = playFeild[cell].getBoundingClientRect();
@@ -72,4 +98,5 @@ function View(controller) {
           left: box.left + window.pageXOffset
         };
       }
+
 }

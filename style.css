@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Monoton&display=swap');
+
 *{
     margin: 0;
     padding: 0;
@@ -5,6 +8,7 @@
 }
 .field{
     display: none;
+    padding-top: 2%;
 }
 .field .game{
     max-width: 60%;
@@ -23,11 +27,19 @@
 }
 .numb_rez .block_element{
     background: #fff;
-    width: 13%;
+    width: 19%;
     border-radius: 50%;
 }
+
+.numb_rez .avatar-one, .avatar-two {
+    width: 19%;
+}
+
 .win_one, .win_two{
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Monoton', cursive;
     font-size: 80px;
+    padding: 10px 10px;
     text-align: center;
 }
 .numX{
@@ -72,7 +84,12 @@
 .name_plaeyer{
     display: flex;
     justify-content: space-between;
-    margin: 5px 7%;
+    padding: 1% 6%;
+}
+
+.name_plaeyer .block_pl{
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
 }
 .block_pl{
     flex-basis: 88px;
@@ -99,7 +116,18 @@
     background-color: blanchedalmond;
 }
 
-
+@media (min-width: 1200px) {
+    .win_one, .win_two{
+        font-size: 120px;
+        padding: 0px 10px;
+    }
+    .field .game_field{
+        margin: 2% 5%;
+    }
+    .field {
+        padding-top: 0.5%; 
+    }
+}
 
 /* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {} */
 /* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {} */
