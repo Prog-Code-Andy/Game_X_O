@@ -32,17 +32,6 @@ function Model(char = "x") {
   };
 
   this.playersTurn = function (cellNumber) {
-      var arr = this.field;
-      var sx = 0;
-      var sp = -1;
-      for (let i = 0; i < arr.length; i++) {
-          if(aa[i] == 'x') xs++;
-          else if(a[i] === ' ') sp = i;
-      }
-      if(xs === 3 && sp !== -1){
-          
-      }
-      console.log(arr);
     var x = cellNumber % 3;
     var y = ~~Math.floor(cellNumber / 3);
     if (this.field[y][x] !== empty) {
@@ -55,6 +44,34 @@ function Model(char = "x") {
   };
 
   this.autoTurn = function () {
+    var arr = this.field;
+    var sx = 0;
+    var sp = -1;
+    console.log(arr);
+
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (arr[i][j] === "x") {
+          sx++;
+        } else if (arr[i][j] === " ") {
+            sp = j;
+            console.log(sx);
+            console.log(j);
+        }
+       
+      }
+      
+      if (sx === 2 && sp !== -1) {
+        /* for (let x = 0; x < arr.length; x++) {
+          if (arr[i][x] === " " || arr[x][i] === " ") {
+            this.field[i][x] = this.comp;
+            return i * 3 + x;
+          }
+        } */
+        console.log(sp);
+      }
+    }
+
     if (count < 9) {
       do {
         var y = ~~(Math.random() * 3);
@@ -65,6 +82,17 @@ function Model(char = "x") {
       this.countLengGame();
       return y * 3 + x;
     }
+
+    /* if (count < 9) {
+      do {
+        var y = ~~(Math.random() * 3);
+        var x = ~~(Math.random() * 3);
+      } while (this.field[y][x] !== empty);
+      this.field[y][x] = this.comp;
+      count++;
+      this.countLengGame();
+      return y * 3 + x;
+    } */
   };
 
   var checkRezult = function (a) {
@@ -104,8 +132,8 @@ function Model(char = "x") {
       }
     }
     if (count === 9) {
-        ++this.pwin;
-        ++this.cwin;
+      ++this.pwin;
+      ++this.cwin;
       return "d";
     }
     return false;
