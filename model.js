@@ -45,43 +45,59 @@ function Model(char = "x") {
 
   this.autoTurn = function () {
     var arr = this.field;
-    var sx = 0;
+    var sv = 0;
     var sp = -1;
+    var ss;
     console.log(arr);
 
     for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr.length; j++) {
+        var sx = 0; 
+      for (let j = 0; j < 3; j++) {
         if (arr[i][j] === "x") {
-          sx++;
-        } else if (arr[i][j] === " ") {
+            sx++;
+            sv=sx;
+            ss = i;
+          console.log("find x " + "in " + i + " " + j + " SX = " + sx);
+        } else if (arr[i][j] === "" && sx === 2) {
             sp = j;
-            console.log(sx);
-            console.log(j);
+            console.log("find ..." + "in " + i + " " + j + " SP = " + sp);
+        }
+      }
+
+    }
+    console.log(sv);
+      if (sv === 2 && sp !== -1) {
+        console.log("true !!!" + "in " + ss + " SP = " + sp); 
+        this.field[ss][sp] = this.comp;
+        console.log(ss * 3 + sp);
+        return ss * 3 + sp;
+    }
+        else {
+            sp = -1;
+            if (count < 9) {
+                do {
+                  var y = ~~(Math.random() * 3);
+                  var x = ~~(Math.random() * 3);
+                } while (this.field[y][x] !== empty);
+                this.field[y][x] = this.comp;
+                count++;
+                this.countLengGame();
+                return y * 3 + x;
+              }
         }
        
-      }
-      
-      if (sx === 2 && sp !== -1) {
+        /* sp = -1;
+        sx = 0; */
         /* for (let x = 0; x < arr.length; x++) {
           if (arr[i][x] === " " || arr[x][i] === " ") {
             this.field[i][x] = this.comp;
             return i * 3 + x;
           }
         } */
-        console.log(sp);
-      }
-    }
+     
+    
 
-    if (count < 9) {
-      do {
-        var y = ~~(Math.random() * 3);
-        var x = ~~(Math.random() * 3);
-      } while (this.field[y][x] !== empty);
-      this.field[y][x] = this.comp;
-      count++;
-      this.countLengGame();
-      return y * 3 + x;
-    }
+    /*  */
 
     /* if (count < 9) {
       do {
