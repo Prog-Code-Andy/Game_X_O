@@ -12,7 +12,6 @@
 }
 .field .game{
     max-width: 60%;
-    height: 97%;
     margin: 0 auto;
 }
 .field .field_rezult{
@@ -32,14 +31,14 @@
 }
 
 .numb_rez .avatar-one, .avatar-two {
-    width: 19%;
+    width: 15%;
 }
 
 .win_one, .win_two{
     font-family: 'Indie Flower', cursive;
     font-family: 'Monoton', cursive;
     font-size: 80px;
-    padding: 10px 10px;
+    font-size: 6vw;
     text-align: center;
 }
 .numX{
@@ -94,7 +93,7 @@
 .block_pl{
     flex-basis: 88px;
     text-align: center;
-    font-size: 25px;
+    font-size: 2vw;
 }
 
 .field .game_field{
@@ -117,15 +116,27 @@
 }
 
 @media (min-width: 1200px) {
-    .win_one, .win_two{
+    /* .win_one, .win_two{
         font-size: 120px;
         padding: 0px 10px;
-    }
+    } */
     .field .game_field{
-        margin: 2% 5%;
+        margin: 1% 5%;
     }
     .field {
         padding-top: 0.5%; 
+    }
+    .field_rezult .numb_rez {
+        margin: 5px 5%;
+    }
+    .numb_rez .block_element {
+        width: 12%;
+    }
+    .win_one, .win_two {
+        font-size: 3vw;
+    }
+    .numb_rez .avatar-one, .avatar-two {
+        width: 10%;
     }
 }
 

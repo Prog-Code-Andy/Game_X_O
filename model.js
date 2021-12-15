@@ -77,6 +77,7 @@ function Model(char = "x") {
           if (this.field[ss][i] === "") {
             this.field[ss][i] = this.comp;
              console.log("!!---!!! " + (ss * 3 + i));
+             count++;
             return ss * 3 + i;
           } 
         }
@@ -95,20 +96,7 @@ function Model(char = "x") {
                 return y * 3 + x;
               }
         }
-       
-        /* sp = -1;
-        sx = 0; */
-        /* for (let x = 0; x < arr.length; x++) {
-          if (arr[i][x] === " " || arr[x][i] === " ") {
-            this.field[i][x] = this.comp;
-            return i * 3 + x;
-          }
-        } */
-     
-    
-
-    /*  */
-
+        
     /* if (count < 9) {
       do {
         var y = ~~(Math.random() * 3);
