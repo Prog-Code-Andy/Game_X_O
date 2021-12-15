@@ -54,25 +54,35 @@ function Model(char = "x") {
         var sx = 0; 
       for (let j = 0; j < 3; j++) {
         if (arr[i][j] === "x") {
-            sx++;
-            sv=sx;
+          sx++;
+         /*  sv = sx++; Почему не отрабатывает? */
+            sv = sx;
             ss = i;
           console.log("find x " + "in " + i + " " + j + " SX = " + sx);
-        } else if (arr[i][j] === "" && sx === 2) {
+        } else if (arr[i][j] === "" /* || sx === 2 */) {
             sp = j;
-            console.log("find ..." + "in " + i + " " + j + " SP = " + sp);
+          console.log("find ..." + "in " + i + " " + j + " SP = " + sp);
         }
       }
 
     }
     console.log(sv);
       if (sv === 2 && sp !== -1) {
-        console.log("true !!!" + "in " + ss + " SP = " + sp); 
+        /* console.log("true !!!" + "in " + ss + " SP = " + sp);
         this.field[ss][sp] = this.comp;
         console.log(ss * 3 + sp);
-        return ss * 3 + sp;
+        return ss * 3 + sp; */
+        console.log("!!!!!!!! " + ss);
+        for (let i = 0; i < arr.length; i++) {
+          if (this.field[ss][i] === "") {
+            this.field[ss][i] = this.comp;
+             console.log("!!---!!! " + (ss * 3 + i));
+            return ss * 3 + i;
+          } 
+        }
     }
-        else {
+      else {
+        console.log("XXXXXXXX " + ss);
             sp = -1;
             if (count < 9) {
                 do {
