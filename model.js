@@ -43,7 +43,8 @@ function Model(char = "x") {
     return true;
   };
 
-  this.autoTurn = function () {
+  /* no function code */
+  /* this.autoTurn = function () {
     var arr = this.field;
     var sv = 0;
     var sp = -1;
@@ -55,11 +56,10 @@ function Model(char = "x") {
       for (let j = 0; j < 3; j++) {
         if (arr[i][j] === "x") {
           sx++;
-         /*  sv = sx++; Почему не отрабатывает? */
             sv = sx;
             ss = i;
           console.log("find x " + "in " + i + " " + j + " SX = " + sx);
-        } else if (arr[i][j] === "" /* || sx === 2 */) {
+        } else if (arr[i][j] === "") {
             sp = j;
           console.log("find ..." + "in " + i + " " + j + " SP = " + sp);
         }
@@ -68,10 +68,6 @@ function Model(char = "x") {
     }
     console.log(sv);
       if (sv === 2 && sp !== -1) {
-        /* console.log("true !!!" + "in " + ss + " SP = " + sp);
-        this.field[ss][sp] = this.comp;
-        console.log(ss * 3 + sp);
-        return ss * 3 + sp; */
         console.log("!!!!!!!! " + ss);
         for (let i = 0; i < arr.length; i++) {
           if (this.field[ss][i] === "") {
@@ -96,18 +92,20 @@ function Model(char = "x") {
                 return y * 3 + x;
               }
         }
-        
-    /* if (count < 9) {
-      do {
-        var y = ~~(Math.random() * 3);
-        var x = ~~(Math.random() * 3);
-      } while (this.field[y][x] !== empty);
-      this.field[y][x] = this.comp;
-      count++;
-      this.countLengGame();
-      return y * 3 + x;
-    } */
-  };
+  }; */
+ /*  end no function code */
+
+this.smartMovie = function(token, arr) {
+  for (let i = 0; i < arr.length; i++) {
+    var tokenCntl = 0, spR;
+    for (let j = 0; j < arr.length; j++) {
+      if(arr[i][j] === token) tokenCntl++;
+      if(arr[i][j] === empty) spR = j;
+    } 
+    if(tokenCntl === 2 && spR !== -1) return i*3+spR;
+  }
+}
+
 
   var checkRezult = function (a) {
     for (var i = 0; i < 3; i++) {
