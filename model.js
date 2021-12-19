@@ -93,19 +93,23 @@ function Model(char = "x") {
               }
         }
   }; */
- /*  end no function code */
+  /*  end no function code */
 
-this.smartMovie = function(token, arr) {
-  for (let i = 0; i < arr.length; i++) {
-    var tokenCntl = 0, spR;
-    for (let j = 0; j < arr.length; j++) {
-      if(arr[i][j] === token) tokenCntl++;
-      if(arr[i][j] === empty) spR = j;
-    } 
-    if(tokenCntl === 2 && spR !== -1) return i*3+spR;
-  }
-}
-
+  this.smartMove = function (token, arr) {
+    for (let i = 0; i < arr.length; i++) {
+      var tokenCntR = 0,
+          spR;
+      for (let j = 0; j < arr.length; j++) {
+        if (arr[i][j] === token) tokenCntR++;
+        if (arr[i][j] === empty) spR = j;
+      }
+      if (tokenCntR === 2 && spR !== -1) return i * 3 + spR;
+    }
+    if(token === this.comp){
+      return this.smartMove(this.player);
+    }
+    return null;
+  };
 
   var checkRezult = function (a) {
     for (var i = 0; i < 3; i++) {
