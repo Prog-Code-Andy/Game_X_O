@@ -22,7 +22,8 @@
 .field_rezult .numb_rez{
     display: flex;
     justify-content: space-between;
-    margin: 5px 5%;
+    align-items: center;
+    /* margin: 5px 5%; */
 }
 .numb_rez .block_element{
     background: #fff;
@@ -116,10 +117,7 @@
 }
 
 @media (min-width: 1200px) {
-    /* .win_one, .win_two{
-        font-size: 120px;
-        padding: 0px 10px;
-    } */
+
     .field .game_field{
         margin: 1% 5%;
     }
@@ -130,7 +128,7 @@
         margin: 5px 5%;
     }
     .numb_rez .block_element {
-        width: 12%;
+        width: 10%;
     }
     .win_one, .win_two {
         font-size: 3vw;
@@ -139,10 +137,3 @@
         width: 10%;
     }
 }
-
-/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {} */
-/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {} */
-/* @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {} */
-/* @media only screen and (max-width : 320px) {} */
-/* @media only screen and (min-width : 321px) {} */
-/* @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {} */

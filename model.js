@@ -97,14 +97,17 @@ function Model(char = "x") {
 
   this.smartMove = function (token, arr) {
     for (let i = 0; i < 3; i++) {
-      var tokenCntR = 0, spR = -1;
-
+      var tokenCntR = 0, spR = -1, tokenCntL = 0, spR = -1;
       
       for (let j = 0; j < 3; j++) {
         if(arr[i][j] === token) tokenCntR++;
         else if (arr[i][j] === empty) spR = j;
+
+        if(arr[j][i] === token) tokenCntL++;
+        else if (arr[j][i] === empty) spL = j;
       }
       if (tokenCntR === 2 && spR !== -1) return i * 3 + spR;
+      else if (tokenCntL === 2 && spL !== -1) return spL * 3 + i;
     }
     if(token === this.comp)
       return this.smartMove(this.player, arr);
@@ -114,13 +117,16 @@ function Model(char = "x") {
   this.autoTurn = function () {
     if (count < 9) {
       var res = this.smartMove(this.comp, this.field);
+      console.log(res);
+      if (this.field[~~(res / 3)][res % 3] !== "") res === null;
       if(res === null){
         do {
           res = ~~(Math.random() * 9);
         } while (this.field[~~(res/3)][res%3] !== empty);
       }
-        this.field[~~(res/3)][res%3] = this.comp;
-        console.log(this.field);
+      this.field[~~(res / 3)][res % 3] = this.comp;
+      console.log(res);
+      console.log(this.field);
         count++;
         return res;
     }
