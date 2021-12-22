@@ -97,7 +97,7 @@ function Model(char = "x") {
 
   this.smartMove = function (token, arr) {
     for (let i = 0; i < 3; i++) {
-      var tokenCntR = 0, spR = -1, tokenCntL = 0, spR = -1;
+      var tokenCntR = 0, spR = -1, tokenCntL = 0, spL = -1;
       
       for (let j = 0; j < 3; j++) {
         if(arr[i][j] === token) tokenCntR++;
