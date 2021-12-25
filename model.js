@@ -96,6 +96,7 @@ function Model(char = "x") {
   /*  end no function code */
 
   this.smartMove = function (token, arr) {
+    var  tokenCenter = 0, spCent = -1, tokenCenterSec = 0, spCentSec = -1;
     for (let i = 0; i < 3; i++) {
       var tokenCntR = 0, spR = -1, tokenCntL = 0, spL = -1;
       
@@ -105,9 +106,21 @@ function Model(char = "x") {
 
         if(arr[j][i] === token) tokenCntL++;
         else if (arr[j][i] === empty) spL = j;
+
+        if(arr[i][j] === token && i === j) tokenCenter++;
+        else if (arr[i][j] === empty && i === j) spCent = j;
+
+        if(arr[i][j] === token && 2-i === j) tokenCenterSec++;
+        else if (arr[i][j] === empty && 2-i === j) spCentSec = j;
       }
+      console.log(i + " --- "+ tokenCenter + " --- " +  spCent);
       if (tokenCntR === 2 && spR !== -1) return i * 3 + spR;
       else if (tokenCntL === 2 && spL !== -1) return spL * 3 + i;
+      else if(tokenCenter === 2 && spCent !== -1) {
+        /* if(i === 0) return 0;
+        if(i === 1) return 4;
+        if(i === 2) return 8; */
+      }
     }
     if(token === this.comp)
       return this.smartMove(this.player, arr);
