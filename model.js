@@ -4,6 +4,7 @@ function Model(char = "x") {
   this.comp = char = "x" ? "o" : "x";
   this.pwin = 0;
   this.cwin = 0;
+  this.countGame = 0;
   this.getTempMachRes = true;
 
   var getClearField = function () {
@@ -43,58 +44,6 @@ function Model(char = "x") {
     return true;
   };
 
-  /* no function code */
-  /* this.autoTurn = function () {
-    var arr = this.field;
-    var sv = 0;
-    var sp = -1;
-    var ss;
-    console.log(arr);
-
-    for (let i = 0; i < arr.length; i++) {
-        var sx = 0; 
-      for (let j = 0; j < 3; j++) {
-        if (arr[i][j] === "x") {
-          sx++;
-            sv = sx;
-            ss = i;
-          console.log("find x " + "in " + i + " " + j + " SX = " + sx);
-        } else if (arr[i][j] === "") {
-            sp = j;
-          console.log("find ..." + "in " + i + " " + j + " SP = " + sp);
-        }
-      }
-
-    }
-    console.log(sv);
-      if (sv === 2 && sp !== -1) {
-        console.log("!!!!!!!! " + ss);
-        for (let i = 0; i < arr.length; i++) {
-          if (this.field[ss][i] === "") {
-            this.field[ss][i] = this.comp;
-             console.log("!!---!!! " + (ss * 3 + i));
-             count++;
-            return ss * 3 + i;
-          } 
-        }
-    }
-      else {
-        console.log("XXXXXXXX " + ss);
-            sp = -1;
-            if (count < 9) {
-                do {
-                  var y = ~~(Math.random() * 3);
-                  var x = ~~(Math.random() * 3);
-                } while (this.field[y][x] !== empty);
-                this.field[y][x] = this.comp;
-                count++;
-                this.countLengGame();
-                return y * 3 + x;
-              }
-        }
-  }; */
-  /*  end no function code */
-
   this.smartMove = function (token, arr) {
     var  tokenCenter = 0, spCent = -1, tokenCenterSec = 0, spCentSec = -1;
     for (let i = 0; i < 3; i++) {
@@ -111,15 +60,14 @@ function Model(char = "x") {
         else if (arr[i][j] === empty && i === j) spCent = j;
 
         if(arr[i][j] === token && 2-i === j) tokenCenterSec++;
-        else if (arr[i][j] === empty && 2-i === j) spCentSec = j;
+        else if (arr[i][j] === empty && 2-i === j) spCentSec = i;
       }
-      console.log(i + " --- "+ tokenCenter + " --- " +  spCent);
       if (tokenCntR === 2 && spR !== -1) return i * 3 + spR;
       else if (tokenCntL === 2 && spL !== -1) return spL * 3 + i;
       else if(tokenCenter === 2 && spCent !== -1) {
-        /* if(i === 0) return 0;
-        if(i === 1) return 4;
-        if(i === 2) return 8; */
+        return spCent * 4;
+      } else if(tokenCenterSec === 2 && spCentSec !== -1) {
+        return (spCentSec+1)*2;
       }
     }
     if(token === this.comp)
@@ -130,17 +78,34 @@ function Model(char = "x") {
   this.autoTurn = function () {
     if (count < 9) {
       var res = this.smartMove(this.comp, this.field);
-      console.log(res);
-      if (this.field[~~(res / 3)][res % 3] !== "") res === null;
+      if(this.field[1][1] === empty){
+        this.field[1][1] = this.comp;
+        res = 4;
+      }
+
+         //если центр ход X по Углам 0
+      if(this.countGame%2 != 0){
+        if(this.field[1][1] === this.player && count === 1){
+          console.log(count);
+          var tempP;
+          do{
+            tempP = ~~(Math.random()*9);
+          }while(tempP !== 0 && tempP !== 2 && tempP !== 6 && tempP !== 8);
+          this.field[~~(tempP / 3)][tempP % 3] = this.comp;
+          console.log(tempP + " print number");
+          console.log(this.field);
+          return tempP;
+        } 
+      }
+
       if(res === null){
         do {
           res = ~~(Math.random() * 9);
         } while (this.field[~~(res/3)][res%3] !== empty);
       }
       this.field[~~(res / 3)][res % 3] = this.comp;
-      console.log(res);
-      console.log(this.field);
         count++;
+        console.log(this.field);
         return res;
     }
   };
@@ -170,18 +135,21 @@ function Model(char = "x") {
       if (res === this.player) {
         if (this.getTempMachRes) {
           this.getTempMachRes = false;
+          ++this.countGame;
           ++this.pwin;
         }
         return "p";
       } else {
         if (this.getTempMachRes) {
           this.getTempMachRes = false;
+          ++this.countGame;
           ++this.cwin;
         }
         return "c";
       }
     }
     if (count === 9) {
+      ++this.countGame;
       ++this.pwin;
       ++this.cwin;
       return "d";
