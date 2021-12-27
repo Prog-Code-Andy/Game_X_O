@@ -83,7 +83,7 @@ function Model(char = "x") {
         res = 4;
       }
 
-         //если центр ход X по Углам 0
+         //если центр ход X по Углам 0 новое
       if(this.countGame%2 != 0){
         if(this.field[1][1] === this.player && count === 1){
           console.log(count);
