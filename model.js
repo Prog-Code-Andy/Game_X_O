@@ -84,19 +84,17 @@ function Model(char = "x") {
       }
 
          //если центр ход X по Углам 0 новое
-      if(this.countGame%2 != 0){
+      /* if(this.countGame%2 != 0){ */
         if(this.field[1][1] === this.player && count === 1){
-          console.log(count);
           var tempP;
           do{
             tempP = ~~(Math.random()*9);
           }while(tempP !== 0 && tempP !== 2 && tempP !== 6 && tempP !== 8);
           this.field[~~(tempP / 3)][tempP % 3] = this.comp;
-          console.log(tempP + " print number");
-          console.log(this.field);
+          count++;
           return tempP;
         } 
-      }
+     /*  } */
 
       if(res === null){
         do {
