@@ -45,67 +45,61 @@ function Model(char = "x") {
   };
 
   this.smartMove = function (token, arr) {
-    var  tokenCenter = 0, spCent = -1, tokenCenterSec = 0, spCentSec = -1;
+    var tokenCenter = 0,
+      spCent = -1,
+      tokenCenterSec = 0,
+      spCentSec = -1;
     for (let i = 0; i < 3; i++) {
-      var tokenCntR = 0, spR = -1, tokenCntL = 0, spL = -1;
-      
+      var tokenCntR = 0,
+        spR = -1,
+        tokenCntL = 0,
+        spL = -1;
+
       for (let j = 0; j < 3; j++) {
-        if(arr[i][j] === token) tokenCntR++;
+        if (arr[i][j] === token) tokenCntR++;
         else if (arr[i][j] === empty) spR = j;
 
-        if(arr[j][i] === token) tokenCntL++;
+        if (arr[j][i] === token) tokenCntL++;
         else if (arr[j][i] === empty) spL = j;
-
-        if(arr[i][j] === token && i === j) tokenCenter++;
-        else if (arr[i][j] === empty && i === j) spCent = j;
-
-        if(arr[i][j] === token && 2-i === j) tokenCenterSec++;
-        else if (arr[i][j] === empty && 2-i === j) spCentSec = i;
       }
+      //Проверка дал ли рузультат горизотнать или вертикаль
       if (tokenCntR === 2 && spR !== -1) return i * 3 + spR;
       else if (tokenCntL === 2 && spL !== -1) return spL * 3 + i;
-      else if(tokenCenter === 2 && spCent !== -1) {
-        return spCent * 4;
-      } else if(tokenCenterSec === 2 && spCentSec !== -1) {
-        return (spCentSec+1)*2;
-      }
+      //Обход диагоналей
+      if (arr[i][i] === token) tokenCenter++;
+      else if (arr[i][i] === empty) spCent = i;
+      if (arr[i][2 - i] === token) tokenCenterSec++;
+      else if (arr[i][2 - i] === empty) spCentSec = i;
     }
-    if(token === this.comp)
-      return this.smartMove(this.player, arr);
+    //Проверка дали ли результат ко диагонали
+    if (tokenCenter === 2 && spCent !== -1) return spCent * 4;
+    else if (tokenCenterSec === 2 && spCentSec !== -1)
+      return (spCentSec + 1) * 2;
+
+    if (token === this.comp) return this.smartMove(this.player, arr);
     return null;
   };
 
   this.autoTurn = function () {
-    if (count < 9) {
-      var res = this.smartMove(this.comp, this.field);
-      if(this.field[1][1] === empty){
-        this.field[1][1] = this.comp;
+    if (count === 1) {
+      //Проверка на пустоту по центру поля
+      if (this.field[1][1] === empty) {
         res = 4;
+      } else {
+        res = ~~(Math.random() * 2) * 6 + ~~(Math.random() * 2) * 2;
       }
-
-         //если центр ход X по Углам 0 новое
-      /* if(this.countGame%2 != 0){ */
-        if(this.field[1][1] === this.player && count === 1){
-          var tempP;
-          do{
-            tempP = ~~(Math.random()*9);
-          }while(tempP !== 0 && tempP !== 2 && tempP !== 6 && tempP !== 8);
-          this.field[~~(tempP / 3)][tempP % 3] = this.comp;
-          count++;
-          return tempP;
-        } 
-     /*  } */
-
-      if(res === null){
+    } else {
+      //Запускаем умный ход
+      var res = this.smartMove(this.comp, this.field);
+      if (res === null) {
         do {
           res = ~~(Math.random() * 9);
-        } while (this.field[~~(res/3)][res%3] !== empty);
+        } while (this.field[~~(res / 3)][res % 3] !== empty);
       }
-      this.field[~~(res / 3)][res % 3] = this.comp;
-        count++;
-        console.log(this.field);
-        return res;
     }
+    this.field[~~(res / 3)][res % 3] = this.comp;
+    count++;
+    return res;
   };
 
   var checkRezult = function (a) {
